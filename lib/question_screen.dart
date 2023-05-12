@@ -24,11 +24,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     QuizQuestion currentQuestion = questions[currentIndex];
-    if (currentQuestion.answers.length == currentIndex) {
-      setState(() {
-        currentIndex = 0;
-      });
-    }
 
     return SizedBox(
       width: double.infinity,
