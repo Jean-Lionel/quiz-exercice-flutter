@@ -11,6 +11,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   String activeScreen = 'start-screen';
+  List<String> selectAnswer = [];
 
   void switchScreen() {
     setState(() {
@@ -18,8 +19,16 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void chooseAnswer(String answer) {
+    selectAnswer.add(answer);
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget widgetActiveScreen = StartScreen(switchScreen);
+    if (activeScreen == 'question-screen') {
+      widgetActiveScreen = QuestionScreen( onSelectAnswer: chooseAnswer);
+    }
     return MaterialApp(
         home: Scaffold(
       body: Container(
@@ -28,7 +37,7 @@ class _QuizState extends State<Quiz> {
             begin: Alignment.topLeft,
             end: Alignment(0.8, 1),
             colors: <Color>[
-              Color(0xff1f005c),
+              Color(0xff5b0060),
               Color(0xff5b0060),
               Color(0xff870160),
               Color(0xffac255e),
@@ -38,9 +47,7 @@ class _QuizState extends State<Quiz> {
             tileMode: TileMode.mirror,
           ),
         ),
-        child: activeScreen == 'start-screen'
-            ? StartScreen(switchScreen)
-            : const QuestionScreen(),
+        child: widgetActiveScreen,
       ),
     ));
   }
