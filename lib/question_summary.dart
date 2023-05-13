@@ -15,15 +15,17 @@ class QuestionSummary extends StatelessWidget {
                 Text(
                   ((e['question_index'] as int) + 1).toString(),
                 ),
-                Column(
-                  children: [
-                    Text(e['question'] as String),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(e['user_answer'] as String),
-                    Text(e['question_answer'] as String),
-                  ],
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(e['question'] as String),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(e['user_answer'] as String),
+                      Text(e['question_answer'] as String),
+                    ],
+                  ),
                 )
               ],
             ),
